@@ -1,3 +1,4 @@
+```bash
 PASS
 ok  	learn1	0.344s
 === RUN   TestSort
@@ -94,3 +95,5 @@ ok  	learn1	0.344s
         --- PASS: TestSort/learn1/quick.Sort/Test_8 (0.00s)
 PASS
 ok  	learn1	0.087s
+
+```
