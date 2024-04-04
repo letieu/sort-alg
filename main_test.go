@@ -3,8 +3,9 @@ package main
 import (
 	"learn1/bubble"
 	"learn1/insertion"
-	"learn1/selection"
 	"learn1/merge"
+	"learn1/quick"
+	"learn1/selection"
 	"reflect"
 	"runtime"
 	"testing"
@@ -64,6 +65,7 @@ var sorters = []Sorter{
 	selection.Sort,
 	bubble.Sort,
 	merge.Sort,
+	quick.Sort,
 }
 
 func TestSort(t *testing.T) {
