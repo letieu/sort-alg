@@ -2,6 +2,7 @@ package main
 
 import (
 	"learn1/insertion"
+	"learn1/selection"
 	"reflect"
 	"runtime"
 	"testing"
@@ -33,16 +34,22 @@ var testCases = []struct {
 
 var sorters = []Sorter{
 	insertion.Sort,
+	selection.Sort,
 }
 
 func TestSort(t *testing.T) {
 	for _, sorter := range sorters {
 		sorterName := runtime.FuncForPC(reflect.ValueOf(sorter).Pointer()).Name()
 		t.Run(sorterName, func(t *testing.T) {
-			for _, tt := range testCases {
-				t.Run(tt.name, func(t *testing.T) {
-					if got := sorter(tt.args); !reflect.DeepEqual(got, tt.want) {
-						t.Errorf("SortInts() = %v, want %v", got, tt.want)
+			for _, testCase := range testCases {
+
+				// Create a copy of tt.args
+				argsCopy := make([]int, len(testCase.args))
+				copy(argsCopy, testCase.args)
+
+				t.Run(testCase.name, func(t *testing.T) {
+					if got := sorter(argsCopy); !reflect.DeepEqual(got, testCase.want) {
+						t.Errorf("SortInts() = %v, want %v", got, testCase.want)
 					}
 				})
 			}
