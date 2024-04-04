@@ -1,6 +1,7 @@
 package main
 
 import (
+	"learn1/bubble"
 	"learn1/insertion"
 	"learn1/selection"
 	"reflect"
@@ -60,6 +61,7 @@ var testCases = []struct {
 var sorters = []Sorter{
 	insertion.Sort,
 	selection.Sort,
+	bubble.Sort,
 }
 
 func TestSort(t *testing.T) {
