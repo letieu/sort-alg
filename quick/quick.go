@@ -1,29 +1,31 @@
 package quick
 
-func Sort(arr []int) []int {
-	if len(arr) < 2 {
-		return arr
-	}
-
-	// work with pivot
-	pivot := len(arr) - 1
-	j := -1
-
-	for i := 0; i < len(arr); i++ {
-		if arr[i] > arr[pivot] {
-			continue
+func partition(arr []int, low int, high int) int {
+	pivot := arr[high]
+	i := low
+	for j := low; j < high; j++ {
+		if arr[j] < pivot {
+			arr[j], arr[i] = arr[i], arr[j]
+			i++
 		}
-
-		j++
-		arr[i], arr[j] = arr[j], arr[i]
 	}
 
-	// split
-	left := Sort(arr[:j])
-	right := Sort(arr[j+1:])
+	arr[i], arr[high] = arr[high], arr[i]
+	return i
+}
 
-	left = append(left, arr[j])
-	left = append(left, right...)
+func quickSort(arr []int, low, high int) {
+	if low >= high {
+		return
+	}
 
-	return left
+	p := partition(arr, low, high)
+	quickSort(arr, low, p-1)
+	quickSort(arr, p+1, high)
+}
+
+func Sort(arr []int) []int {
+	quickSort(arr, 0, len(arr)-1)
+
+    return arr
 }
